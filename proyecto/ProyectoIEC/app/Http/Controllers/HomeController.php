@@ -9,4 +9,14 @@ class HomeController extends Controller
     public function index(){
         return view('index');
     }
+    public function home(){
+
+        
+
+        return view('home');
+    }
+
+    public function periodos(){
+        return view('forms.periodos');
+    }
 }
