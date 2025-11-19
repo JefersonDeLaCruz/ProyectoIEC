@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistorialCalculo;
 use Illuminate\Http\Request;
 
 class PeriodosController extends Controller
@@ -104,7 +105,12 @@ class PeriodosController extends Controller
 
 
 
-
+        // Guardar en historial
+        HistorialCalculo::create([
+            'tipo_calculo' => 'periodos',
+            'valores_entrada' => $request->all(),
+            'resultado' => $n
+        ]);
 
         // return redirect()->route('home')->with('exito', "el resultado es {$n}");
         return view('home', compact('n'));

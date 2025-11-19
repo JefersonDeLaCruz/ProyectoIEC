@@ -41,7 +41,7 @@
                                 <span class="label-text">Número de Períodos (n)</span>
                             </label>
                             <input type="number" id="num_periodos" name="num_periodos" step="1" placeholder="Ingrese el número de períodos"
-                                class="input input-bordered w-full">
+                                class="input input-bordered w-full" value="{{ old('num_periodos', $datos['num_periodos'] ?? '') }}">
                         </div>
 
                         <!-- Campo Renta (R) -->
@@ -50,7 +50,7 @@
                                 <span class="label-text">Renta (R)</span>
                             </label>
                             <input type="number" id="renta" name="renta" step="0.01" placeholder="Ingrese la renta"
-                                class="input input-bordered w-full" required>
+                                class="input input-bordered w-full" required value="{{ old('renta', $datos['renta'] ?? '') }}">
                         </div>
 
                         <!-- Campo Tasa de Interés (i) -->
@@ -75,7 +75,7 @@
                                 <span class="label-text">Tasa de Interés (i) %</span>
                             </label>
                             <input type="number" id="tasa_interes" name="tasa_interes" step="0.000001"
-                                placeholder="Ingrese la tasa de interés" class="input input-bordered w-full" required>
+                                placeholder="Ingrese la tasa de interés" class="input input-bordered w-full" required value="{{ old('tasa_interes', $datos['tasa_interes'] ?? '') }}">
                         </div>
 
                         <!-- Select Periodicidad de la Tasa -->
@@ -85,14 +85,14 @@
                             </label>
                             <select id="periodicidad" name="periodicidad" class="select select-bordered w-full" required>
                                 <option value="">Seleccione la periodicidad</option>
-                                <option value="anual">Anual</option>
-                                <option value="semestral">Semestral</option>
-                                <option value="trimestral">Trimestral</option>
-                                <option value="bimestral">Bimestral</option>
-                                <option value="mensual">Mensual</option>
-                                <option value="quincenal">Quincenal</option>
-                                <option value="semanal">Semanal</option>
-                                <option value="diaria">Diaria</option>
+                                <option value="anual" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'anual' ? 'selected' : '' }}>Anual</option>
+                                <option value="semestral" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'semestral' ? 'selected' : '' }}>Semestral</option>
+                                <option value="trimestral" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'trimestral' ? 'selected' : '' }}>Trimestral</option>
+                                <option value="bimestral" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'bimestral' ? 'selected' : '' }}>Bimestral</option>
+                                <option value="mensual" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'mensual' ? 'selected' : '' }}>Mensual</option>
+                                <option value="quincenal" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'quincenal' ? 'selected' : '' }}>Quincenal</option>
+                                <option value="semanal" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'semanal' ? 'selected' : '' }}>Semanal</option>
+                                <option value="diaria" {{ old('periodicidad', $datos['periodicidad'] ?? '') == 'diaria' ? 'selected' : '' }}>Diaria</option>
                             </select>
                         </div>
                 </div>

@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistorialCalculo;
 use Illuminate\Http\Request;
 
 class CapitalController extends Controller
 {
     //
-    public function show_form()
+    public function show_form(Request $request)
     {
-        return view('forms.capital');
+        $datos = null;
+        if($request->has('from_history')){
+            $historial = HistorialCalculo::find($request->from_history);
+            if($historial){
+                $datos = $historial->valores_entrada;
+            }
+        }
+        return view('forms.capital', compact('datos'));
     }
     public function calculo(Request $request)
     {
@@ -74,6 +82,13 @@ class CapitalController extends Controller
             $c = round($c, 2);
         }
 
+
+        // Guardar en historial
+        HistorialCalculo::create([
+            'tipo_calculo' => 'capital',
+            'valores_entrada' => $request->all(),
+            'resultado' => $c
+        ]);
 
         // return redirect()->route('home')->with('exito', "el resultado es {$n}");
         return view('home', compact('c'));

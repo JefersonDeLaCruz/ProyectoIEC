@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistorialCalculo;
 use Illuminate\Http\Request;
 
 class RentaController extends Controller
 {
-    public function show_form(){
-        return view('forms.renta');
+    public function show_form(Request $request){
+        $datos = null;
+        if($request->has('from_history')){
+            $historial = HistorialCalculo::find($request->from_history);
+            if($historial){
+                $datos = $historial->valores_entrada;
+            }
+        }
+        return view('forms.renta', compact('datos'));
     }
 
     public function calculo(Request $request){
@@ -70,6 +78,13 @@ class RentaController extends Controller
             } 
         }
         
+        // Guardar en historial
+        HistorialCalculo::create([
+            'tipo_calculo' => 'renta',
+            'valores_entrada' => $request->all(),
+            'resultado' => $r
+        ]);
+
         return view('home', compact('r'));
     }
 }
