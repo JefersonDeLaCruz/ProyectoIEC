@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('tittle', "Calculadora | Trinity")
+@section('tittle', 'Calculadora | Trinity')
 
 @section('header')
     <div class="">
@@ -18,13 +18,40 @@
                     <form action="renta_calculo" method="POST" class="space-y-4">
                         @csrf
 
-                        <!-- Campo Monto (M) -->
+                        <!-- Selector de tipo de calculo -->
                         <div class="form-control">
+                            <label class="label">
+                                <span class="label-text py-2">Tipo de calculo</span>
+                            </label>
+                            <div class="flex gap-4">
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_calculo" value="monto" class="radio radio-primary"
+                                        checked>
+                                    <span class="label-text">Desde Monto</span>
+                                </label>
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_calculo" value="capital" class="radio radio-primary">
+                                    <span class="label-text">Desde Capital</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Campo Monto (M) -->
+                        <div class="form-control" id="campo-monto">
                             <label class="label" for="monto">
                                 <span class="label-text">Monto (M)</span>
                             </label>
-                            <input type="number" id="monto" name="monto" step="0.01" placeholder="Ingrese el monto"
-                                class="input input-bordered w-full" required>
+                            <input type="number" id="monto" name="monto" step="0.01"
+                                placeholder="Ingrese el monto" class="input input-bordered w-full" required>
+                        </div>
+
+                        <!-- Campo Capital (C) -->
+                        <div class="form-control" id="campo-capital" style="display: none;">
+                            <label class="label" for="capital">
+                                <span class="label-text">Capital (C)</span>
+                            </label>
+                            <input type="number" id="capital" name="capital" step="0.01" placeholder="Ingrese el capital"
+                                class="input input-bordered w-full">
                         </div>
 
                         <!-- Campo Renta (R) -->
@@ -32,8 +59,8 @@
                             <label class="label" for="n_pagos">
                                 <span class="label-text">Cantidad de pagos (n)</span>
                             </label>
-                            <input type="number" id="n_pagos" name="n_pagos" step="0.01" min="1" placeholder="Ingrese la cantidad de pagos"
-                                class="input input-bordered w-full" required>
+                            <input type="number" id="n_pagos" name="n_pagos" step="0.01" min="1"
+                                placeholder="Ingrese la cantidad de pagos" class="input input-bordered w-full" required>
                         </div>
 
                         <!-- Campo Tasa de Interés (i) -->
@@ -91,5 +118,42 @@
                 </form>
             </div>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                // Manejo de Monto vs Capital
+                const radioMonto = document.querySelector('input[name="tipo_calculo"][value="monto"]');
+                const radioCapital = document.querySelector('input[name="tipo_calculo"][value="capital"]');
+                const campoMonto = document.getElementById('campo-monto');
+                const campoCapital = document.getElementById('campo-capital');
+                const inputMonto = document.getElementById('monto');
+                const inputCapital = document.getElementById('capital');
+
+                function actualizarCampos() {
+
+                    if (radioMonto.checked) {
+                        campoMonto.style.display = 'block';
+                        campoCapital.style.display = 'none';
+                        inputMonto.required = true;
+                        inputCapital.required = false;
+                        inputCapital.value = '';
+                    } 
+                    
+                    else {
+                        campoMonto.style.display = 'none';
+                        campoCapital.style.display = 'block';
+                        inputMonto.required = false;
+                        inputCapital.required = true;
+                        inputMonto.value = '';
+                    }
+                }
+
+                radioMonto.addEventListener('change', actualizarCampos);
+                radioCapital.addEventListener('change', actualizarCampos);
+
+                actualizarCampos();
+            });
+        </script>
     </div>
 @endsection

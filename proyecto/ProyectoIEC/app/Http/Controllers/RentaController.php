@@ -12,7 +12,9 @@ class RentaController extends Controller
 
     public function calculo(Request $request){
         
+        $capital = $request->post('capital');
         $monto = $request->post('monto');
+
         $tasa_interes = $request->post('tasa_interes');
         $n_pagos = $request->post('n_pagos');
         $periodicidad = $request->post('periodicidad');
@@ -36,19 +38,38 @@ class RentaController extends Controller
 
         $n = $n_pagos;
 
-        if($periodicidad != $capitalizacion){
+        if($monto != 0){
 
-            $i_cap = $tasa_interes / $freq_cap;
-            $r = $monto / ((((pow((1 + $i_cap), ($n + 1)) - 1)) / $i_cap) - 1);
-            $r = round($r, 2);
+            if($periodicidad != $capitalizacion){
+    
+                $i_cap = $tasa_interes / $freq_cap;
+                $r = $monto / ((((pow((1 + $i_cap), ($n + 1)) - 1)) / $i_cap) - 1);
+                $r = round($r, 2);
+            }
+    
+            else{
+                $r = $monto / ((((pow((1 + $tasa_interes), ($n + 1)) - 1)) / $tasa_interes) - 1);
+                $r = round($r, 2);
+            }
         }
 
         else{
-            $r = $monto / ((((pow((1 + $tasa_interes), ($n + 1)) - 1)) / $tasa_interes) - 1);
-            $r = round($r, 2);
+
+           if($periodicidad != $capitalizacion){
+    
+                $i_cap = $tasa_interes / $freq_cap;
+
+                $r = $capital / ((1 + (1 - (pow((1 + $i_cap), ((-1*$n) + 1)))) / $i_cap));
+                $r = round($r, 2);
+            }
+    
+            else{
+                //$r = $monto / ((((pow((1 + $tasa_interes), ($n + 1)) - 1)) / $tasa_interes) - 1);
+                $r = $capital / ((1 + (1 - (pow((1 + $tasa_interes), ((-1*$n) + 1)))) / $tasa_interes));
+                $r = round($r, 2);
+            } 
         }
         
-
         return view('home', compact('r'));
     }
 }
