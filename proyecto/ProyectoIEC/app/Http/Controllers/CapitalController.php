@@ -11,9 +11,9 @@ class CapitalController extends Controller
     public function show_form(Request $request)
     {
         $datos = null;
-        if($request->has('from_history')){
+        if ($request->has('from_history')) {
             $historial = HistorialCalculo::find($request->from_history);
-            if($historial){
+            if ($historial) {
                 $datos = $historial->valores_entrada;
             }
         }
@@ -48,17 +48,17 @@ class CapitalController extends Controller
             $n = 0;
             if ($request->filled('num_periodos')) {
                 $n = $request->post('num_periodos');
-            }else {
+            } else {
                 # code...
                 //calcular n como la relacion entre periodos de renta y capitalizacion
                 $n = $freq_cap;
             }
-            
+
             //ajustar la tasa de interes segun la capitalizacion
             $i_cap = $tasa_interes / $freq_cap;
-            
+
             // $i_pago = pow(1 + $i_cap, $freq_cap / $freq_pago) - 1;
-            
+
             // $i_pago = pow(1 + $tasa_ajustada, $freq_cap / $freq_pago) - 1;
             //calcular el capital usando la formula de anualidad anticipada
             $c = $renta * ((1 - pow((1 + $i_cap), $n * -1)) / $i_cap) * (1 + $i_cap);
@@ -77,7 +77,26 @@ class CapitalController extends Controller
                 'diaria' => 365
             ];
             $freq_pago = $periodos_por_anio[$periodicidad];
-            $n = $freq_pago;
+
+            $n = 0;
+            if ($request->filled('num_periodos')) {
+                $n = $request->post('num_periodos');
+            } else {
+                # code...
+                //calcular n como la relacion entre periodos de renta y capitalizacion
+                $n = $freq_pago;
+            }
+            // $n = $freq_pago;
+
+            // dd([
+            //     'request_all'   => $request->all(),
+            //     'renta'         => $renta,
+            //     'tasa_interes'  => $tasa_interes,
+            //     'periodicidad'  => $periodicidad,
+            //     'tipo_tasa'     => $request->post('tipo_tasa'),
+            //     'freq_pago'     => $freq_pago,
+            //     'n'             => $n,
+            // ]);
             $c = $renta * ((1 - pow((1 + $tasa_interes), $n * -1)) / $tasa_interes) * (1 + $tasa_interes);
             $c = round($c, 2);
         }
