@@ -12,12 +12,14 @@
     <div class="flex flex-col items-center min-h-screen px-4 py-8">
         <div class="w-full max-w-md">
         <h2 class="text-center font-semibold">Menu de operaciones</h2>
+
             <ul class="menu bg-base-200 rounded-box w-full">
                 <li><a href="{{ route('periodos-form') }}">Calcular Periodos (n)</a></li>
                 <li><a href="{{ route('capital-form') }}">Calcular Monto (M)</a></li>
                 <li><a href="{{ route('capital-form') }}">Calcular Capital (C)</a></li>
-                <li><a>Calcular Renta (R)</a></li>
+                <li><a href="{{ route('renta-form') }}">Calcular Renta (R)</a></li>
             </ul>
+
         </div>
 
         @if (session('exito'))
@@ -35,6 +37,12 @@
          @if (isset($c))
             <div>
                 <h1>{{ $c }}</h1>
+            </div>
+        @endif
+
+        @if (isset($r))
+            <div class="my-3">
+                <h1>El resultado de la renta es: ${{ $r }}</h1>
             </div>
         @endif
     </div>
