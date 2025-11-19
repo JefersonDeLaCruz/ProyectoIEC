@@ -18,13 +18,39 @@
                     <form action="periodos_calculo" method="POST" class="space-y-4">
                         @csrf
 
-                        <!-- Campo Monto (M) -->
+                        <!-- Selector de tipo de calculo -->
                         <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Tipo de calculo</span>
+                            </label>
+                            <div class="flex gap-4">
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_calculo" value="monto" class="radio radio-primary" checked>
+                                    <span class="label-text">Desde Monto</span>
+                                </label>
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_calculo" value="capital" class="radio radio-primary">
+                                    <span class="label-text">Desde Capital</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Campo Monto (M) -->
+                        <div class="form-control" id="campo-monto">
                             <label class="label" for="monto">
                                 <span class="label-text">Monto (M)</span>
                             </label>
                             <input type="number" id="monto" name="monto" step="0.01" placeholder="Ingrese el monto"
-                                class="input input-bordered w-full" required>
+                                class="input input-bordered w-full">
+                        </div>
+
+                        <!-- Campo Capital (C) -->
+                        <div class="form-control" id="campo-capital" style="display: none;">
+                            <label class="label" for="capital">
+                                <span class="label-text">Capital (C)</span>
+                            </label>
+                            <input type="number" id="capital" name="capital" step="0.01" placeholder="Ingrese el capital"
+                                class="input input-bordered w-full">
                         </div>
 
                         <!-- Campo Renta (R) -->
@@ -38,6 +64,22 @@
 
                         <!-- Campo Tasa de Interés (i) -->
                         <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Tipo de tasa de interés</span>
+                            </label>
+                            <div class="flex gap-4">
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" checked>
+                                    <span class="label-text">Tasa Anual</span>
+                                </label>
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary">
+                                    <span class="label-text">Tasa Convertida</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-control">
                             <label class="label" for="tasa_interes">
                                 <span class="label-text">Tasa de Interés (i) %</span>
                             </label>
@@ -48,28 +90,10 @@
                         <!-- Select Periodicidad de la Tasa -->
                         <div class="form-control">
                             <label class="label" for="periodicidad">
-                                <span class="label-text">Periodicidad de la Tasa</span>
+                                <span class="label-text">Periodicidad de la Renta</span>
                             </label>
                             <select id="periodicidad" name="periodicidad" class="select select-bordered w-full" required>
                                 <option value="">Seleccione la periodicidad</option>
-                                <option value="anual">Anual</option>
-                                <option value="semestral">Semestral</option>
-                                <option value="trimestral">Trimestral</option>
-                                <option value="bimestral">Bimestral</option>
-                                <option value="mensual">Mensual</option>
-                                <option value="quincenal">Quincenal</option>
-                                <option value="semanal">Semanal</option>
-                                <option value="diaria">Diaria</option>
-                            </select>
-                        </div>
-
-                        <div class="form-control">
-                            <label class="label" for="periodicidad">
-                                <span class="label-text">Periodo de capitalizacion de la Tasa</span>
-                            </label>
-                            <select id="capitalizacion" name="capitalizacion" class="select select-bordered w-full"
-                                required>
-                                <option value="">Seleccione la frecuencia de capitalizacion</option>
                                 <option value="anual">Anual</option>
                                 <option value="semestral">Semestral</option>
                                 <option value="trimestral">Trimestral</option>
@@ -92,6 +116,38 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejo de Monto vs Capital
+            const radioMonto = document.querySelector('input[name="tipo_calculo"][value="monto"]');
+            const radioCapital = document.querySelector('input[name="tipo_calculo"][value="capital"]');
+            const campoMonto = document.getElementById('campo-monto');
+            const campoCapital = document.getElementById('campo-capital');
+            const inputMonto = document.getElementById('monto');
+            const inputCapital = document.getElementById('capital');
+
+            function actualizarCampos() {
+                if (radioMonto.checked) {
+                    campoMonto.style.display = 'block';
+                    campoCapital.style.display = 'none';
+                    inputMonto.required = true;
+                    inputCapital.required = false;
+                    inputCapital.value = '';
+                } else {
+                    campoMonto.style.display = 'none';
+                    campoCapital.style.display = 'block';
+                    inputMonto.required = false;
+                    inputCapital.required = true;
+                    inputMonto.value = '';
+                }
+            }
+
+            radioMonto.addEventListener('change', actualizarCampos);
+            radioCapital.addEventListener('change', actualizarCampos);
+            actualizarCampos();
+        });
+    </script>
 
     </div>
 @endsection

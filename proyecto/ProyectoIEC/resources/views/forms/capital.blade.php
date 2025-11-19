@@ -18,14 +18,31 @@
                     <form action="capital_calculo" method="POST" class="space-y-4">
                         @csrf
 
-                        <!-- Campo Monto (M) -->
-                        {{-- <div class="form-control">
-                            <label class="label" for="monto">
-                                <span class="label-text">Monto (M)</span>
+                        <!-- Selector de incluir periodos -->
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Incluir numero de periodos</span>
                             </label>
-                            <input type="number" id="monto" name="monto" step="0.01" placeholder="Ingrese el monto"
-                                class="input input-bordered w-full" required>
-                        </div> --}}
+                            <div class="flex gap-4">
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="usar_periodos" value="no" class="radio radio-primary" checked>
+                                    <span class="label-text">No</span>
+                                </label>
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="usar_periodos" value="si" class="radio radio-primary">
+                                    <span class="label-text">Si</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Campo Numero de Periodos (n) -->
+                        <div class="form-control" id="campo-periodos" style="display: none;">
+                            <label class="label" for="num_periodos">
+                                <span class="label-text">Número de Períodos (n)</span>
+                            </label>
+                            <input type="number" id="num_periodos" name="num_periodos" step="1" placeholder="Ingrese el número de períodos"
+                                class="input input-bordered w-full">
+                        </div>
 
                         <!-- Campo Renta (R) -->
                         <div class="form-control">
@@ -38,6 +55,22 @@
 
                         <!-- Campo Tasa de Interés (i) -->
                         <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Tipo de tasa de interés</span>
+                            </label>
+                            <div class="flex gap-4">
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" checked>
+                                    <span class="label-text">Tasa Anual</span>
+                                </label>
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary">
+                                    <span class="label-text">Tasa Convertida</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-control">
                             <label class="label" for="tasa_interes">
                                 <span class="label-text">Tasa de Interés (i) %</span>
                             </label>
@@ -48,28 +81,10 @@
                         <!-- Select Periodicidad de la Tasa -->
                         <div class="form-control">
                             <label class="label" for="periodicidad">
-                                <span class="label-text">Periodicidad de la Tasa</span>
+                                <span class="label-text">Periodicidad de la Renta</span>
                             </label>
                             <select id="periodicidad" name="periodicidad" class="select select-bordered w-full" required>
                                 <option value="">Seleccione la periodicidad</option>
-                                <option value="anual">Anual</option>
-                                <option value="semestral">Semestral</option>
-                                <option value="trimestral">Trimestral</option>
-                                <option value="bimestral">Bimestral</option>
-                                <option value="mensual">Mensual</option>
-                                <option value="quincenal">Quincenal</option>
-                                <option value="semanal">Semanal</option>
-                                <option value="diaria">Diaria</option>
-                            </select>
-                        </div>
-
-                        <div class="form-control">
-                            <label class="label" for="periodicidad">
-                                <span class="label-text">Periodo de capitalizacion de la Tasa</span>
-                            </label>
-                            <select id="capitalizacion" name="capitalizacion" class="select select-bordered w-full"
-                                required>
-                                <option value="">Seleccione la frecuencia de capitalizacion</option>
                                 <option value="anual">Anual</option>
                                 <option value="semestral">Semestral</option>
                                 <option value="trimestral">Trimestral</option>
@@ -92,6 +107,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioNo = document.querySelector('input[name="usar_periodos"][value="no"]');
+            const radioSi = document.querySelector('input[name="usar_periodos"][value="si"]');
+            const campoPeriodos = document.getElementById('campo-periodos');
+            const inputPeriodos = document.getElementById('num_periodos');
+
+            function actualizarPeriodos() {
+                if (radioSi.checked) {
+                    campoPeriodos.style.display = 'block';
+                    inputPeriodos.required = true;
+                } else {
+                    campoPeriodos.style.display = 'none';
+                    inputPeriodos.required = false;
+                    inputPeriodos.value = '';
+                }
+            }
+
+            radioNo.addEventListener('change', actualizarPeriodos);
+            radioSi.addEventListener('change', actualizarPeriodos);
+            actualizarPeriodos();
+        });
+    </script>
 
     </div>
 @endsection
