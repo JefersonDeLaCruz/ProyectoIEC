@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+
     <div class="flex flex-col items-center justify-center min-h-screen px-4 py-6 bg-base-200">
         <div class="w-full max-w-2xl">
             <div class="text-center mb-8">
@@ -17,7 +18,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="{{ route('periodos-form') }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
+                <a href="{{ route('periodos-form') }}" class="card rounded-lg bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
                     <div class="card-body">
                         <div class="flex items-center gap-3">
                             <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -31,21 +32,7 @@
                     </div>
                 </a>
 
-                <a href="{{ route('capital-form') }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
-                    <div class="card-body">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
-                                <span class="text-2xl font-bold text-secondary">M</span>
-                            </div>
-                            <div>
-                                <h3 class="card-title text-lg">Monto</h3>
-                                <p class="text-sm text-base-content/60">Calcular monto futuro</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="{{ route('capital-form') }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
+                <a href="{{ route('capital-form') }}" class="card rounded-lg bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
                     <div class="card-body">
                         <div class="flex items-center gap-3">
                             <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
@@ -59,7 +46,21 @@
                     </div>
                 </a>
 
-                <a href="{{ route('renta-form') }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
+                <a href="{{ route('monto-form') }}" class="card rounded-lg bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
+                    <div class="card-body">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-accent">M</span>
+                            </div>
+                            <div>
+                                <h3 class="card-title text-lg">Monto</h3>
+                                <p class="text-sm text-base-content/60">Calcular monto inicial</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{{ route('renta-form') }}" class="card rounded-lg bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
                     <div class="card-body">
                         <div class="flex items-center gap-3">
                             <div class="w-12 h-12 rounded-full bg-info/10 flex items-center justify-center">
@@ -76,13 +77,13 @@
         </div>
 
         @if (session('exito'))
-            <div class="alert alert-success shadow-lg max-w-2xl w-full mt-6">
+            <div class="alert alert-success shadow-lg max-w-2xl w-full mt-6 rounded-lg">
                 <span>{{ session('exito') }}</span>
             </div>
         @endif
 
         @if (isset($n))
-            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6">
+            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6 rounded-lg">
                 <div class="card-body">
                     <h2 class="card-title">Resultado</h2>
                     <p class="text-3xl font-bold text-primary">{{ $n }} periodos</p>
@@ -91,7 +92,7 @@
         @endif
 
         @if (isset($c))
-            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6">
+            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6 rounded-lg">
                 <div class="card-body">
                     <h2 class="card-title">Resultado</h2>
                     <p class="text-3xl font-bold text-secondary">${{ number_format($c, 2) }}</p>
@@ -100,7 +101,7 @@
         @endif
 
         @if (isset($r))
-            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6">
+            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6 rounded-lg">
                 <div class="card-body">
                     <h2 class="card-title">Resultado de la Renta</h2>
                     <p class="text-3xl font-bold text-info">${{ number_format($r, 2) }}</p>
@@ -108,10 +109,19 @@
             </div>
         @endif
 
+        @if (isset($m))
+            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6 rounded-lg">
+                <div class="card-body">
+                    <h2 class="card-title">Resultado</h2>
+                    <p class="text-3xl font-bold text-info">${{ number_format($m, 2) }}</p>
+                </div>
+            </div>
+        @endif
+
         {{-- Historial de calculos --}}
         @if(isset($historial) && $historial->count() > 0)
             <div class="w-full max-w-2xl mt-8">
-                <div class="card bg-base-100 shadow-lg">
+                <div class="card bg-base-100 shadow-lg rounded-lg">
                     <div class="card-body">
                         <h2 class="card-title mb-4">Calculos Recientes</h2>
                         <div class="overflow-x-auto">
@@ -134,6 +144,9 @@
                                                     @elseif($item->tipo_calculo == 'capital')
                                                         <span class="badge badge-accent">C</span>
                                                         <span>Capital</span>
+                                                    @elseif($item->tipo_calculo == 'monto')
+                                                        <span class="badge badge-info">M</span>
+                                                        <span>Monto</span>
                                                     @elseif($item->tipo_calculo == 'renta')
                                                         <span class="badge badge-info">R</span>
                                                         <span>Renta</span>

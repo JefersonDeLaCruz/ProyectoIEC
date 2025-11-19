@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('tittle', "Calculadora | Trinity")
+@section('tittle', "Calcular Monto | Trinity")
 
 @section('header')
     <div class="">
@@ -12,12 +12,12 @@
 
     <div class="flex flex-col items-center min-h-screen px-4 py-8 bg-base-200">
         <div class="w-full max-w-md mx-auto mt-6">
-            
+
             <div class="card bg-base-100 shadow-xl rounded-lg">
                 <div class="card-body">
-                    <h3 class="card-title text-center justify-center mb-4">Calcular Capital segun una anualidad</h3>
+                    <h3 class="card-title text-center justify-center mb-4">Calcular Monto segun una anualidad</h3>
 
-                    <form action="capital_calculo" method="POST" class="space-y-4">
+                    <form action="monto_calculo" method="POST" class="space-y-4">
                         @csrf
 
                         <!-- Selector de incluir periodos -->
@@ -63,7 +63,7 @@
                             <div class="flex gap-4">
                                 <label class="label cursor-pointer gap-2">
                                     <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" checked>
-                                    <span class="label-text">Tasa Anual</span>
+                                    <span class="label-text">Tasa Capitalizable</span>
                                 </label>
                                 <label class="label cursor-pointer gap-2">
                                     <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary">
