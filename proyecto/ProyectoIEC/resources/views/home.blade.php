@@ -122,6 +122,15 @@
             </div>
         @endif
 
+        @if (isset($m))
+            <div class="card bg-base-100 shadow-lg max-w-2xl w-full mt-6">
+                <div class="card-body">
+                    <h2 class="card-title">Resultado</h2>
+                    <p class="text-3xl font-bold text-info">${{ number_format($m, 2) }}</p>
+                </div>
+            </div>
+        @endif
+
         {{-- Historial de calculos --}}
         @if(isset($historial) && $historial->count() > 0)
             <div class="w-full max-w-2xl mt-8">
@@ -148,6 +157,9 @@
                                                     @elseif($item->tipo_calculo == 'capital')
                                                         <span class="badge badge-accent">C</span>
                                                         <span>Capital</span>
+                                                    @elseif($item->tipo_calculo == 'monto')
+                                                        <span class="badge badge-info">M</span>
+                                                        <span>Monto</span>
                                                     @elseif($item->tipo_calculo == 'renta')
                                                         <span class="badge badge-info">R</span>
                                                         <span>Renta</span>

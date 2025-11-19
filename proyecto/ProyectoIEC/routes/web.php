@@ -19,5 +19,5 @@ Route::get('/capital', [CapitalController::class, 'show_form'])->name('capital-f
 Route::post('/renta_calculo', [RentaController::class, 'calculo'])->name('renta_calculo');
 Route::get('/renta', [RentaController::class, 'show_form'])->name('renta-form');
 
-Route::post('/monto-calculo', [MontoController::class, 'calculo'])->name('monto_calculo');
+Route::post('/monto_calculo', [MontoController::class, 'calculo'])->name('monto_calculo');
 Route::get('/monto', [MontoController::class, 'show_form'])->name('monto-form');
