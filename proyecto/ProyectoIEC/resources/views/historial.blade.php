@@ -49,6 +49,9 @@
                                                     @elseif($item->tipo_calculo == 'capital')
                                                         <span class="badge badge-accent badge-lg">C</span>
                                                         <span class="font-semibold">Capital</span>
+                                                    @elseif($item->tipo_calculo == 'monto')
+                                                        <span class="badge badge-accent badge-lg">M</span>
+                                                        <span class="font-semibold">Monto</span>
                                                     @elseif($item->tipo_calculo == 'renta')
                                                         <span class="badge badge-info badge-lg">R</span>
                                                         <span class="font-semibold">Renta</span>
@@ -82,7 +85,9 @@
                                                         $routeName = 'periodos-form';
                                                     } elseif($item->tipo_calculo == 'capital') {
                                                         $routeName = 'capital-form';
-                                                    } elseif($item->tipo_calculo == 'renta') {
+                                                    } elseif($item->tipo_calculo == 'monto') {
+                                                        $routeName = 'renta-form';
+                                                    }elseif($item->tipo_calculo == 'renta') {
                                                         $routeName = 'renta-form';
                                                     }
                                                 @endphp
