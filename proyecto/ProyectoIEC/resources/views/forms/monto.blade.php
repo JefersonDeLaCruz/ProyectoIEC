@@ -63,7 +63,7 @@
                             <div class="flex gap-4">
                                 <label class="label cursor-pointer gap-2">
                                     <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" checked>
-                                    <span class="label-text">Tasa Capitalizable</span>
+                                    <span class="label-text">Tasa Anual</span>
                                 </label>
                                 <label class="label cursor-pointer gap-2">
                                     <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary">

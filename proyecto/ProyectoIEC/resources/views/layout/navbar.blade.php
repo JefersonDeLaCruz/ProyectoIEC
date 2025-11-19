@@ -13,7 +13,7 @@
                 <li><a href="{{ route('documentacion') }}">Documentacion</a></li>
             </ul>
         </div>
-        <a class="btn btn-ghost text-xl" href="{{ route('home') }}">Anualidades Vencidas | Trinity</a>
+        <a class="btn btn-ghost text-xl" href="{{ route('home') }}">Anualidades Anticipadas | Trinity</a>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">

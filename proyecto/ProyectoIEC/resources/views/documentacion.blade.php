@@ -1,6 +1,6 @@
 @extends('layout.base')
 
-@section('title', 'Documentacion | Trinity')
+@section('tittle', 'Documentacion | Trinity')
 
 @section('header')
     <div class="">

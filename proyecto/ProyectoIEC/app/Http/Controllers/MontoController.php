@@ -76,7 +76,7 @@ class MontoController extends Controller
 
             $freq_pago = $periodos_por_anio[$periodicidad];
             $n = $freq_pago;
-            $m = ($renta * ((pow((1 + $tasa_interes), $n ) - 1) / $tasa_interes) - 1) * (1 + $tasa_interes);
+            $m = ($renta * ((pow((1 + $tasa_interes), $n ) - 1) / $tasa_interes)) * (1 + $tasa_interes);
             $m = round($m, 2);
         }
 
