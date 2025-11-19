@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PeriodosController extends Controller
+class MontoController extends Controller
 {
     //
-
     public function calculo(Request $request){
 
         $monto = $request->post('monto');

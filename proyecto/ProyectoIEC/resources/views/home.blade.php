@@ -11,10 +11,12 @@
 @section('content')
     <div class="flex flex-col items-center min-h-screen px-4 py-8">
         <div class="w-full max-w-md">
+        <h2 class="text-center font-semibold">Menu de operaciones</h2>
             <ul class="menu bg-base-200 rounded-box w-full">
-                <li><a href="{{ route('periodos-form') }}">Calcular periodos (n)</a></li>
-                <li><a>Item 2</a></li>
-                <li><a>Item 3</a></li>
+                <li><a href="{{ route('periodos-form') }}">Calcular Periodos (n)</a></li>
+                <li><a href="{{ route('capital-form') }}">Calcular Monto (M)</a></li>
+                <li><a href="{{ route('capital-form') }}">Calcular Capital (C)</a></li>
+                <li><a>Calcular Renta (R)</a></li>
             </ul>
         </div>
 
@@ -24,9 +26,15 @@
             </div>
         @endif
 
-        @if ($n)
+        @if (isset($n))
             <div>
                 <h1>{{ $n }}</h1>
+            </div>
+        @endif
+
+         @if (isset($c))
+            <div>
+                <h1>{{ $c }}</h1>
             </div>
         @endif
     </div>
