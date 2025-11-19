@@ -9,9 +9,11 @@
 @endsection
 
 @section('content')
-    <div class="flex flex-col items-center min-h-screen px-4 py-8">
+
+    <div class="flex flex-col items-center min-h-screen px-4 py-8 bg-base-200">
         <div class="w-full max-w-md mx-auto mt-6">
-            <div class="card bg-base-100 shadow-xl">
+
+            <div class="card bg-base-100 shadow-xl rounded-lg">
                 <div class="card-body">
                     <h3 class="card-title text-center justify-center mb-4">Calcular Renta</h3>
 
@@ -110,7 +112,7 @@
                 </div>
 
                 <!-- Botón de Submit -->
-                <div class="form-control mt-6">
+                <div class="form-control p-4">
                     <button type="submit" class="btn btn-primary w-full">
                         Calcular
                     </button>
