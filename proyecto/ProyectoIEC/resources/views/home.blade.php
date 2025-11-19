@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </a>
-
+{{-- 
                 <a href="{{ route('capital-form') }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
                     <div class="card-body">
                         <div class="flex items-center gap-3">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                </a>
+                </a> --}}
 
                 <a href="{{ route('capital-form') }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
                     <div class="card-body">
@@ -54,6 +54,20 @@
                             <div>
                                 <h3 class="card-title text-lg">Capital</h3>
                                 <p class="text-sm text-base-content/60">Calcular capital inicial</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{{ route('monto-form') }}" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1">
+                    <div class="card-body">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                                <span class="text-2xl font-bold text-accent">M</span>
+                            </div>
+                            <div>
+                                <h3 class="card-title text-lg">Monto</h3>
+                                <p class="text-sm text-base-content/60">Calcular monto inicial</p>
                             </div>
                         </div>
                     </div>

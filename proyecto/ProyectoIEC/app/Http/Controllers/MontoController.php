@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistorialCalculo;
 use Illuminate\Http\Request;
 
 class MontoController extends Controller
 {
-    //
+    public function show_form(Request $request){
+        $datos = null;
+        if($request->has('from_history')){
+            $historial = HistorialCalculo::find($request->from_history);
+            if($historial){
+                $datos = $historial->valores_entrada;
+            }
+        }
+        return view('forms.monto', compact('datos'));
+    }
+
     public function calculo(Request $request){
 
         $monto = $request->post('monto');
