@@ -10,7 +10,7 @@
             <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li><a href="{{ route('home') }}">Calculadora</a></li>
                 <li><a href="{{ route('historial') }}">Historial</a></li>
-                <li><a>Documentacion</a></li>
+                <li><a href="{{ route('documentacion') }}">Documentacion</a></li>
             </ul>
         </div>
         <a class="btn btn-ghost text-xl" href="{{ route('home') }}">Anualidades Vencidas | Trinity</a>
@@ -47,7 +47,7 @@
                     </svg>Historial
                 </a>
             </li>
-            <li><a class="font-bold" >
+            <li><a class="font-bold" href="{{ route('documentacion') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-info-icon lucide-info">

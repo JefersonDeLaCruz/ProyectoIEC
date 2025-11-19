@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/historial', [HomeController::class, 'historial'])->name('historial');
+Route::get('/documentacion', [HomeController::class, 'documentacion'])->name('documentacion');
 
 Route::post('/periodos_calculo', [PeriodosController::class, 'calculo'])->name('periodos_calculo');
 Route::get('/periodos', [HomeController::class, 'periodos'])->name('periodos-form');

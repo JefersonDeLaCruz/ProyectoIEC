@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
-        return view('index');
+    public function documentacion(){
+        return view('documentacion');
     }
+    
     public function home(){
 
         // Obtener los ultimos 10 calculos del historial
