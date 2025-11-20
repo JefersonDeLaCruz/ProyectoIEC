@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+
     <div class="flex flex-col items-center min-h-screen px-4 py-8 bg-base-200">
         <div class="w-full max-w-6xl">
             <div class="flex justify-between items-center mb-6">
@@ -22,6 +23,78 @@
             </div>
 
             <div class="grid grid-cols-1 gap-6">
+
+                {{-- Ejercicio práctico --}}
+                <div class="card bg-base-100 shadow-lg border rounded-xl">
+                    <div class="card-body">
+                        <div class="flex items-start gap-3">
+                            {{-- <div class="badge badge-info badge-lg">1</div> --}}
+                            <div class="flex-1">
+                                <h2 class="card-title mb-3 badge badge-info badge-lg">Ejercicio propuesto</h2>
+                                <div class="bg-base-200 p-4 rounded-lg mb-4">
+                                    <p class="text-base-content">
+                                        La empresa TechSV Solutions quiere comprar 12 computadoras
+                                        dentro de 2 años. Para ello necesita <strong>$7,000</strong> 
+                                        por computadora, haciendo un total de <strong>$84,000</strong> 
+                                        . Deciden usar <strong>anualidades anticipadas</strong> con depósitos
+                                        <strong>mensuales</strong> a una tasa de interés de <strong>8% convertible mensualmente</strong>. 
+                                    </p>
+                                    <p class="text-base-content mt-4">
+                                        <strong>¿Cuánto deben depositar al inicio de cada mes?</strong>
+                                    </p>
+                                </div>
+
+                                {{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                                    <div class="bg-base-200/50 p-3 rounded">
+                                        <span class="text-sm text-base-content/70">Tipo:</span>
+                                        <div class="font-semibold flex items-center gap-2">
+                                            <span class="badge badge-info">R</span>
+                                            Renta
+                                        </div>
+                                    </div>
+                                    <div class="bg-base-200/50 p-3 rounded">
+                                        <span class="text-sm text-base-content/70">Desde:</span>
+                                        <div class="font-semibold">Monto</div>
+                                    </div>
+                                    <div class="bg-base-200/50 p-3 rounded">
+                                        <span class="text-sm text-base-content/70">Monto (M):</span>
+                                        <div class="font-semibold">$90,000</div>
+                                    </div>
+                                    <div class="bg-base-200/50 p-3 rounded">
+                                        <span class="text-sm text-base-content/70">Períodos (n):</span>
+                                        <div class="font-semibold">12</div>
+                                    </div>
+                                    <div class="bg-base-200/50 p-3 rounded">
+                                        <span class="text-sm text-base-content/70">Tasa de interés:</span>
+                                        <div class="font-semibold">1.2% (convertida)</div>
+                                    </div>
+                                    <div class="bg-base-200/50 p-3 rounded">
+                                        <span class="text-sm text-base-content/70">Periodicidad:</span>
+                                        <div class="font-semibold">Bimestral</div>
+                                    </div>
+                                </div> --}}
+
+                                {{-- <div class="card-actions justify-end">
+                                    <a href="{{ route('renta-form', [
+                                        'from_exercise' => 1,
+                                        'tipo_calculo' => 'monto',
+                                        'monto' => 90000,
+                                        'num_periodos' => 12,
+                                        'tipo_tasa' => 'convertida',
+                                        'tasa_interes' => 1.2,
+                                        'periodicidad' => 'bimestral'
+                                    ]) }}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                        </svg>
+                                        Resolver Ejercicio
+                                    </a>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 {{-- Ejercicio 1 --}}
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
