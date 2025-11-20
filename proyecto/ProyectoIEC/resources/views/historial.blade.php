@@ -86,7 +86,7 @@
                                                     } elseif($item->tipo_calculo == 'capital') {
                                                         $routeName = 'capital-form';
                                                     } elseif($item->tipo_calculo == 'monto') {
-                                                        $routeName = 'renta-form';
+                                                        $routeName = 'monto-form';
                                                     }elseif($item->tipo_calculo == 'renta') {
                                                         $routeName = 'renta-form';
                                                     }
