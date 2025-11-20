@@ -72,11 +72,11 @@
                             </label>
                             <div class="flex gap-4">
                                 <label class="label cursor-pointer gap-2">
-                                    <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" checked>
+                                    <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" {{ old('tipo_tasa', $datos['tipo_tasa'] ?? 'anual') == 'anual' ? 'checked' : '' }}>
                                     <span class="label-text">Tasa Anual</span>
                                 </label>
                                 <label class="label cursor-pointer gap-2">
-                                    <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary">
+                                    <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary" {{ old('tipo_tasa', $datos['tipo_tasa'] ?? '') == 'convertida' ? 'checked' : '' }}>
                                     <span class="label-text">Tasa Convertida</span>
                                 </label>
                             </div>

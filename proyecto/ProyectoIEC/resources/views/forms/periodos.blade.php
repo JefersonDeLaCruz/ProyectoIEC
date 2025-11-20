@@ -27,11 +27,13 @@
                             </label>
                             <div class="flex gap-4">
                                 <label class="label cursor-pointer gap-2">
-                                    <input type="radio" name="tipo_calculo" value="monto" class="radio radio-primary" checked>
+                                    <input type="radio" name="tipo_calculo" value="monto" class="radio radio-primary"
+                                        {{ old('tipo_calculo', $datos['tipo_calculo'] ?? 'monto') == 'monto' ? 'checked' : '' }}>
                                     <span class="label-text">Desde Monto</span>
                                 </label>
                                 <label class="label cursor-pointer gap-2">
-                                    <input type="radio" name="tipo_calculo" value="capital" class="radio radio-primary">
+                                    <input type="radio" name="tipo_calculo" value="capital" class="radio radio-primary"
+                                        {{ old('tipo_calculo', $datos['tipo_calculo'] ?? 'monto') == 'capital' ? 'checked' : '' }}>
                                     <span class="label-text">Desde Capital</span>
                                 </label>
                             </div>
@@ -71,11 +73,13 @@
                             </label>
                             <div class="flex gap-4">
                                 <label class="label cursor-pointer gap-2">
-                                    <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" checked>
+                                    <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary"
+                                        {{ old('tipo_tasa', $datos['tipo_tasa'] ?? 'anual') == 'anual' ? 'checked' : '' }}>
                                     <span class="label-text">Tasa Anual</span>
                                 </label>
                                 <label class="label cursor-pointer gap-2">
-                                    <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary">
+                                    <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary"
+                                        {{ old('tipo_tasa', $datos['tipo_tasa'] ?? 'anual') == 'convertida' ? 'checked' : '' }}>
                                     <span class="label-text">Tasa Convertida</span>
                                 </label>
                             </div>
@@ -147,6 +151,8 @@
 
             radioMonto.addEventListener('change', actualizarCampos);
             radioCapital.addEventListener('change', actualizarCampos);
+            
+            //inicializar al cargar
             actualizarCampos();
         });
     </script>

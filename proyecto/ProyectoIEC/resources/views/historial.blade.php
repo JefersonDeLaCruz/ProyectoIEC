@@ -106,7 +106,27 @@
 
                         {{-- Paginacion --}}
                         <div class="flex justify-center mt-6">
-                            {{ $historial->links() }}
+                            <div class="join">
+                                @if ($historial->onFirstPage())
+                                    <button class="join-item btn btn-disabled">«</button>
+                                @else
+                                    <a href="{{ $historial->previousPageUrl() }}" class="join-item btn">«</a>
+                                @endif
+                                
+                                @foreach ($historial->getUrlRange(1, $historial->lastPage()) as $page => $url)
+                                    @if ($page == $historial->currentPage())
+                                        <button class="join-item btn btn-active">{{ $page }}</button>
+                                    @else
+                                        <a href="{{ $url }}" class="join-item btn">{{ $page }}</a>
+                                    @endif
+                                @endforeach
+                                
+                                @if ($historial->hasMorePages())
+                                    <a href="{{ $historial->nextPageUrl() }}" class="join-item btn">»</a>
+                                @else
+                                    <button class="join-item btn btn-disabled">»</button>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>

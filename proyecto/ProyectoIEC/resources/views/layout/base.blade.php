@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="mb-16">
         @yield('header')
     </header>
 

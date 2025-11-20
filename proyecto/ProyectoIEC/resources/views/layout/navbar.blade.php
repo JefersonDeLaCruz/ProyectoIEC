@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 shadow-sm">
+<div class="navbar bg-base-100 shadow-sm fixed top-0 z-50">
     <div class="navbar-start">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -10,7 +10,7 @@
             <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                 <li><a href="{{ route('home') }}">Calculadora</a></li>
                 <li><a href="{{ route('historial') }}">Historial</a></li>
-                <li><a href="{{ route('documentacion') }}">Documentacion</a></li>
+                <li><a href="{{ route('ejercicios') }}">Ejercicios</a></li>
             </ul>
         </div>
         <a class="btn btn-ghost text-xl" href="{{ route('home') }}">Anualidades Anticipadas | Trinity</a>
@@ -47,15 +47,18 @@
                     </svg>Historial
                 </a>
             </li>
-            <li><a class="font-bold" href="{{ route('documentacion') }}">
+            <li><a class="font-bold" href="{{ route('ejercicios') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-info-icon lucide-info">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M12 16v-4" />
-                        <path d="M12 8h.01" />
+                        class="lucide lucide-book-open-text">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        <path d="M6 8h2" />
+                        <path d="M6 12h2" />
+                        <path d="M16 8h2" />
+                        <path d="M16 12h2" />
                     </svg>
-                    Documentacion
+                    Ejercicios
                 </a>
             </li>
         </ul>

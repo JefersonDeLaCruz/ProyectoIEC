@@ -10,12 +10,28 @@ class RentaController extends Controller
     public function show_form(Request $request)
     {
         $datos = null;
+        
+        //cargar desde historial
         if ($request->has('from_history')) {
             $historial = HistorialCalculo::find($request->from_history);
             if ($historial) {
                 $datos = $historial->valores_entrada;
             }
         }
+        
+        //cargar desde ejercicios
+        if ($request->has('from_exercise')) {
+            $datos = $request->only([
+                'tipo_calculo',
+                'monto',
+                'capital',
+                'num_periodos',
+                'tipo_tasa',
+                'tasa_interes',
+                'periodicidad'
+            ]);
+        }
+        
         return view('forms.renta', compact('datos'));
     }
 

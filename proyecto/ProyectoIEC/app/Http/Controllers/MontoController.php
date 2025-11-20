@@ -15,6 +15,16 @@ class MontoController extends Controller
             if ($historial) {
                 $datos = $historial->valores_entrada;
             }
+        } elseif ($request->has('from_exercise')) {
+            //si viene de un ejercicio, tomar todos los parametros de la URL
+            $datos = [
+                'renta' => $request->get('renta'),
+                'tipo_tasa' => $request->get('tipo_tasa'),
+                'tasa_interes' => $request->get('tasa_interes'),
+                'periodicidad' => $request->get('periodicidad'),
+                'num_periodos' => $request->get('num_periodos'),
+                'usar_periodos' => $request->get('num_periodos') ? 'si' : 'no'
+            ];
         }
         return view('forms.monto', compact('datos'));
     }

@@ -26,6 +26,17 @@ class HomeController extends Controller
             if($historial){
                 $datos = $historial->valores_entrada;
             }
+        } elseif ($request->has('from_exercise')) {
+            //si viene de un ejercicio, tomar todos los parametros de la URL
+            $datos = [
+                'monto' => $request->get('monto'),
+                'capital' => $request->get('capital'),
+                'renta' => $request->get('renta'),
+                'tipo_tasa' => $request->get('tipo_tasa'),
+                'tasa_interes' => $request->get('tasa_interes'),
+                'periodicidad' => $request->get('periodicidad'),
+                'tipo_calculo' => $request->get('tipo_calculo')
+            ];
         }
         return view('forms.periodos', compact('datos'));
     }
@@ -33,5 +44,11 @@ class HomeController extends Controller
     public function historial(){
         $historial = HistorialCalculo::latest()->paginate(20);
         return view('historial', compact('historial'));
+    }
+
+
+    public function ejercicios(){
+        $historial = HistorialCalculo::latest()->paginate(20);
+        return view('ejercicios');
     }
 }
