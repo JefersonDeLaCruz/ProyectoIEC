@@ -56,13 +56,30 @@
                                 class="input input-bordered w-full" value="{{ old('capital', $datos['capital'] ?? '') }}">
                         </div>
 
-                        <!-- Campo Renta (R) -->
-                        <div class="form-control">
-                            <label class="label" for="n_pagos">
-                                <span class="label-text">Cantidad de pagos (n)</span>
+                        <!-- Campo Numero de Periodos (n) -->
+                        <div class="form-control" id="campo-periodos">
+                            <label class="label" for="num_periodos">
+                                <span class="label-text">Número de Períodos (n)</span>
                             </label>
-                            <input type="number" id="n_pagos" name="n_pagos" step="0.01" min="1"
-                                placeholder="Ingrese la cantidad de pagos" class="input input-bordered w-full" required value="{{ old('n_pagos', $datos['n_pagos'] ?? '') }}">
+                            <input type="number" id="num_periodos" name="num_periodos" step="1" placeholder="Ingrese el número de períodos"
+                                class="input input-bordered w-full" value="{{ old('num_periodos', $datos['num_periodos'] ?? '') }}">
+                        </div>
+
+                        <!-- Campo Tasa de Interés (i) -->
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Tipo de tasa de interés</span>
+                            </label>
+                            <div class="flex gap-4">
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_tasa" value="anual" class="radio radio-primary" checked>
+                                    <span class="label-text">Tasa Anual</span>
+                                </label>
+                                <label class="label cursor-pointer gap-2">
+                                    <input type="radio" name="tipo_tasa" value="convertida" class="radio radio-primary">
+                                    <span class="label-text">Tasa Convertida</span>
+                                </label>
+                            </div>
                         </div>
 
                         <!-- Campo Tasa de Interés (i) -->
@@ -92,7 +109,7 @@
                             </select>
                         </div>
 
-                        <div class="form-control">
+                        {{-- <div class="form-control">
                             <label class="label" for="capitalizacion">
                                 <span class="label-text">Periodo de capitalizacion de la Tasa</span>
                             </label>
@@ -108,7 +125,7 @@
                                 <option value="semanal" {{ old('capitalizacion', $datos['capitalizacion'] ?? '') == 'semanal' ? 'selected' : '' }}>Semanal</option>
                                 <option value="diaria" {{ old('capitalizacion', $datos['capitalizacion'] ?? '') == 'diaria' ? 'selected' : '' }}>Diaria</option>
                             </select>
-                        </div>
+                        </div> --}}
                 </div>
 
                 <!-- Botón de Submit -->
@@ -155,6 +172,7 @@
                 radioCapital.addEventListener('change', actualizarCampos);
 
                 actualizarCampos();
+                
             });
         </script>
     </div>

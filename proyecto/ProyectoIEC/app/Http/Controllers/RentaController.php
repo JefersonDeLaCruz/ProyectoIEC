@@ -7,77 +7,84 @@ use Illuminate\Http\Request;
 
 class RentaController extends Controller
 {
-    public function show_form(Request $request){
+    public function show_form(Request $request)
+    {
         $datos = null;
-        if($request->has('from_history')){
+        if ($request->has('from_history')) {
             $historial = HistorialCalculo::find($request->from_history);
-            if($historial){
+            if ($historial) {
                 $datos = $historial->valores_entrada;
             }
         }
         return view('forms.renta', compact('datos'));
     }
 
-    public function calculo(Request $request){
-        
+    public function calculo(Request $request)
+    {
+
         $capital = $request->post('capital');
         $monto = $request->post('monto');
 
         $tasa_interes = $request->post('tasa_interes');
-        $n_pagos = $request->post('n_pagos');
         $periodicidad = $request->post('periodicidad');
-        $capitalizacion = $request->post('capitalizacion');
+        $n = $request->post('num_periodos');
 
         $tasa_interes = $tasa_interes / 100;
 
-        $periodos_por_anio = [
-            'anual' => 1,
-            'semestral' => 2,
-            'trimestral' => 4,
-            'bimestral' => 6,
-            'mensual' => 12,
-            'quincenal' => 24,
-            'semanal' => 52,
-            'diaria' => 365
-        ];
+        if ($request->post('tipo_tasa') == 'anual') {
 
-        $freq_pago = $periodos_por_anio[$periodicidad];
-        $freq_cap = $periodos_por_anio[$capitalizacion];
+            //mapeo de periodos a numero de periodos por año
+            $periodos_por_anio = [
+                'anual' => 1,
+                'semestral' => 2,
+                'trimestral' => 4,
+                'bimestral' => 6,
+                'mensual' => 12,
+                'quincenal' => 24,
+                'semanal' => 52,
+                'diaria' => 365
+            ];
 
-        $n = $n_pagos;
+            //obtener los valores numericos
+            $freq_cap = $periodos_por_anio[$periodicidad];
 
-        if($monto != 0){
+            //ajustar la tasa de interes segun la capitalizacion
+            $i_cap = $tasa_interes / $freq_cap;
 
-            if($periodicidad != $capitalizacion){
-    
-                $i_cap = $tasa_interes / $freq_cap;
-                $r = $monto / ((((pow((1 + $i_cap), ($n + 1)) - 1)) / $i_cap) - 1);
+            if($monto != 0){
+
+                $r = $monto / (((pow((1 + $i_cap), $n) - 1) / $i_cap) * (1 + $i_cap));
                 $r = round($r, 2);
             }
-    
+
             else{
-                $r = $monto / ((((pow((1 + $tasa_interes), ($n + 1)) - 1)) / $tasa_interes) - 1);
+                $r = $capital / (((1 - pow(1 + $i_cap, -$n)) / $i_cap) * (1 + $i_cap));
                 $r = round($r, 2);
             }
-        }
-
-        else{
-
-           if($periodicidad != $capitalizacion){
-    
-                $i_cap = $tasa_interes / $freq_cap;
-
-                $r = $capital / ((1 + (1 - (pow((1 + $i_cap), ((-1*$n) + 1)))) / $i_cap));
-                $r = round($r, 2);
-            }
-    
-            else{
-                //$r = $monto / ((((pow((1 + $tasa_interes), ($n + 1)) - 1)) / $tasa_interes) - 1);
-                $r = $capital / ((1 + (1 - (pow((1 + $tasa_interes), ((-1*$n) + 1)))) / $tasa_interes));
-                $r = round($r, 2);
-            } 
-        }
+        } 
         
+        else {
+
+            $periodos_por_anio = [
+                'anual' => 1,
+                'semestral' => 2,
+                'trimestral' => 4,
+                'bimestral' => 6,
+                'mensual' => 12,
+                'quincenal' => 24,
+                'semanal' => 52,
+                'diaria' => 365
+            ];
+
+            if($monto != 0){
+                $r = $monto / (((pow(1 + $tasa_interes, $n) - 1) / $tasa_interes) * (1 + $tasa_interes));
+                $r = round($r, 2);
+            } else{
+                $r = $capital / (((1 - pow(1 + $tasa_interes, -$n)) / $tasa_interes) * (1 + $tasa_interes));
+                $r = round($r, 2);
+            }
+        }
+
         // Guardar en historial
         HistorialCalculo::create([
             'tipo_calculo' => 'renta',
