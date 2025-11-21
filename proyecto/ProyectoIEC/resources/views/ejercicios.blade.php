@@ -25,10 +25,10 @@
             <div class="grid grid-cols-1 gap-6">
 
                 {{-- Ejercicio práctico --}}
-                <div class="card bg-base-100 shadow-lg border rounded-xl">
+                {{--<div class="card bg-base-100 shadow-lg border rounded-xl">
                     <div class="card-body">
                         <div class="flex items-start gap-3">
-                            {{-- <div class="badge badge-info badge-lg">1</div> --}}
+                            <div class="badge badge-info badge-lg">1</div>
                             <div class="flex-1">
                                 <h2 class="card-title mb-3 badge badge-info badge-lg">Ejercicio propuesto</h2>
                                 <div class="bg-base-200 p-4 rounded-lg mb-4">
@@ -44,7 +44,7 @@
                                     </p>
                                 </div>
 
-                                {{-- <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                                     <div class="bg-base-200/50 p-3 rounded">
                                         <span class="text-sm text-base-content/70">Tipo:</span>
                                         <div class="font-semibold flex items-center gap-2">
@@ -72,9 +72,9 @@
                                         <span class="text-sm text-base-content/70">Periodicidad:</span>
                                         <div class="font-semibold">Bimestral</div>
                                     </div>
-                                </div> --}}
+                                </div>
 
-                                {{-- <div class="card-actions justify-end">
+                                <div class="card-actions justify-end">
                                     <a href="{{ route('renta-form', [
                                         'from_exercise' => 1,
                                         'tipo_calculo' => 'monto',
@@ -89,11 +89,11 @@
                                         </svg>
                                         Resolver Ejercicio
                                     </a>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
                 
                 {{-- Ejercicio 1 --}}
                 <div class="card bg-base-100 shadow-xl">
